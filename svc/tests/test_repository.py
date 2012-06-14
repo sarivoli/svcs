@@ -26,9 +26,11 @@ def test_commit():
         shutil.rmtree(curDir)
     os.mkdir(curDir)
     curRepo = Repo(curDir)
-    newFile = os.path.join(curDir,"myfile.txt")
-    fd= open(newFile, "w")
+    fileName = "myfile.txt"
+    userId = "sarivoli@zeomega.com"
+    fd= open(os.path.join(curDir,fileName), "w")
     fd.write("This is a new content to commit")
     fd.close()
-    curRepo.commit("Committing a new file",newFile)
+    curRepo.commit("Committing a new file",userId,[fileName])
+    assert os.path.exists(os.path.join(curDir,'.svcs','objects',fileName))
     
