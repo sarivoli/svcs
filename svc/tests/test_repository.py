@@ -10,8 +10,10 @@ def test_initrepo():
     #Check if the directory exists or not
     if os.path.exists(curDir):
         shutil.rmtree(curDir)
+    os.mkdir(curDir)
     curRepo = Repo(curDir)
     
     #After initilizing the repo need to check repo structure
-    assert os.path.exists(os.path.join(curDir , '.svc','objects'))
+    assert os.path.exists(os.path.join(curDir , '.svcs','objects'))
+    assert os.path.exists(os.path.join(curDir , '.svcs','tip'))
     
