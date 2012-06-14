@@ -1,2 +1,3 @@
 class Repo:
-    pass
+    def __init__(self,wd):
+        pass
