@@ -30,5 +30,5 @@ def test_commit():
     fd= open(newFile, "w")
     fd.write("This is a new content to commit")
     fd.close()
-    Repo.commit("Committing a new file",newFile)
+    curRepo.commit("Committing a new file",newFile)
     
