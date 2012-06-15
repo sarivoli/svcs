@@ -42,5 +42,9 @@ class Repo:
         self.storage.update_tip(comObj)
 
         return latestCommitId
+    def getLogs(self, c1=None, c2=None):
+        """ Returns all log entry in the current repo"""
+        
+        
             
         
