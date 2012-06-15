@@ -71,7 +71,7 @@ class Commit(Object):
             raise BadData("Bad commit message '%s'"%message)
         if not isinstance(date, datetime.datetime):
             raise BadData("Bad commit date '%s'"%date)
-        if not (parent == None or isinstance(parent, Commit)):
+        if not (parent == None or isinstance(parent, unicode) or isinstance(parent, str)):
             # None is a sentinel rather than a Boolean here
             raise BadData("Bad commit parent '%s'", parent)
         try:
@@ -104,7 +104,7 @@ class Commit(Object):
         if self.parent == None:
             parent = ""
         else:
-            parent = self.parent.id
+            parent = self.parent
 
         data = {"files"     : self.files,
                 "message"   : self.message,

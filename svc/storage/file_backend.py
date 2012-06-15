@@ -46,8 +46,15 @@ class FileStorage(Storage):
         "Updates the tip to the given commit"
         with open(self.tip, "wb") as f:
             f.write(commit.id)
-            
-            
+    def get_tip(self):
+        """ Get the tip object"""
+        fid=None
+        tipcontent = None
+        with open(self.tip, "r") as f:
+            fid = f.read()
+        if fid:
+            tipcontent = self.get_object(fid)
+        return tipcontent
         
 
 

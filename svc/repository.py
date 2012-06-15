@@ -34,16 +34,26 @@ class Repo:
             latestCommitId = fileObj.id
             files.append([itm,fileObj.id])
             
-        parent = self.storage.tip
-        if parent.find('TIP')>-1:
-            parent=None
+        parent = self.storage.get_tip()
+        if parent!=None:
+            parent = parent.id
         comObj = Commit(userId,commitMsg, date,parent,files)
         self.storage.store_object(comObj)
         self.storage.update_tip(comObj)
 
         return latestCommitId
-    def getLogs(self, c1=None, c2=None):
+    def getLogs(self):
         """ Returns all log entry in the current repo"""
+        currentTip = self.storage.get_tip()
+        c = currentTip.id
+        logs =[]
+        while c!=None:
+            c = self.storage.get_object(c)
+            logs.append({"id":c.files[0][1],"committer":c.committer, "message":c.message})
+            c = c.parent
+            pass
+        return logs
+        
         
         
             
